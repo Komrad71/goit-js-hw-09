@@ -6,11 +6,10 @@ const formData = {
 };
 
 const form = document.querySelector('.feedback-form');
+const input = document.querySelector('input');
+const textarea = document.querySelector('textarea');
 
-form.addEventListener('input', event => {
-  formData[event.target.name] = event.target.value.trim();
-  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-});
+document.addEventListener('DOMContentLoaded', getFormData);
 
 function getFormData() {
   const savedData = localStorage.getItem('feedback-form-state');
@@ -22,6 +21,11 @@ function getFormData() {
     formData.message = parsedData.message || '';
   }
 }
+
+form.addEventListener('input', event => {
+  formData[event.target.name] = event.target.value.trim();
+  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+});
 
 form.addEventListener('submit', event => {
   event.preventDefault();
