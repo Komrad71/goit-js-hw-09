@@ -23,11 +23,6 @@ function getFormData() {
   }
 }
 
-form.addEventListener('input', event => {
-  formData[event.target.name] = event.target.value.trim();
-  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-});
-
 form.addEventListener('submit', event => {
   event.preventDefault();
   if (formData.email === '' || formData.message === '') {
@@ -36,7 +31,7 @@ form.addEventListener('submit', event => {
   }
   console.log(formData);
   localStorage.removeItem('feedback-form-state');
-  form.reset();
   formData.email = '';
   formData.message = '';
+  form.reset();
 });
